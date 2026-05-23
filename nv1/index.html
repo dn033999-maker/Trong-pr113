@@ -1,1 +1,133 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR App</title>
+
+<style>
+body{
+    margin:0;
+    background:#2f334d;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+}
+
+.logo{
+    width:90px;
+    margin-top:20px;
+    border-radius:20px;
+}
+
+.name{
+    color:#f0d58c;
+    font-size:32px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.card{
+    width:85%;
+    margin:auto;
+    background:white;
+    border-radius:30px;
+    padding:0 0 30px;
+    overflow:hidden;
+}
+
+.top{
+    background:#f4b400;
+    color:white;
+    padding:20px;
+    font-size:28px;
+}
+
+.time{
+    color:black;
+    font-size:42px;
+    font-weight:bold;
+    margin:30px 0;
+}
+
+.qr{
+    width:320px;
+    max-width:90%;
+}
+
+.refresh{
+    color:gray;
+    font-size:30px;
+    margin-top:15px;
+}
+
+.timer{
+    color:#32cd32;
+    font-size:55px;
+    font-weight:bold;
+}
+
+.note{
+    width:80%;
+    margin:40px auto;
+    font-size:28px;
+    line-height:1.8;
+    color:#ddd;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ảnh app -->
+<img src="logo.png" class="logo">
+
+<div class="name">Cao Van Bo (V23010187)</div>
+
+<div class="card">
+    <div class="top">将二维码对准扫描器刷新出场</div>
+
+    <div class="time" id="clock"></div>
+
+    <!-- ảnh QR -->
+    <img src="qr.png" class="qr">
+
+    <div class="refresh">刷新二维码</div>
+    <div class="timer" id="countdown">00:00:01</div>
+</div>
+
+<div class="note">
+尊敬的员工您好，您已进入企业涉密区域，<br>
+出于企业安全考虑，您的手机摄像头将被禁止，<br>
+感谢您的配合。
+</div>
+
+<script>
+function updateClock(){
+    let now = new Date();
+
+    let y = now.getFullYear();
+    let m = String(now.getMonth()+1).padStart(2,'0');
+    let d = String(now.getDate()).padStart(2,'0');
+    let h = String(now.getHours()).padStart(2,'0');
+    let mi = String(now.getMinutes()).padStart(2,'0');
+    let s = String(now.getSeconds()).padStart(2,'0');
+
+    document.getElementById("clock").innerHTML =
+      `${y}-${m}-${d} ${h}:${mi}:${s}`;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+let c = 1;
+setInterval(()=>{
+   c--;
+   if(c<0) c=1;
+   document.getElementById("countdown").innerHTML =
+      "00:00:0"+c;
+},1000);
+</script>
+
+</body>
+</html>
